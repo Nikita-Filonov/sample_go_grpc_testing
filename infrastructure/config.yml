@@ -1,0 +1,7 @@
+articlesService:
+  port: 8000
+  host: localhost
+
+logger:
+  isDevMode: true
+  level: debug # debug|info|error
