@@ -11,6 +11,24 @@ import (
 	"testing"
 )
 
+func TestGetArticle(t *testing.T) {
+	allure.Test(t, reports.ArticlesServiceFeature, reports.ArticlesSuite,
+		allure.Severity(severity.Critical),
+		allure.Tags(reports.ArticlesTag),
+		allure.Name("Get article"),
+		allure.Action(func() {
+			c, g := common.SetupTesting(t)
+
+			article := articlesservicecontrollers.GetRandomArticle()
+			c.ArticlesService.CreateArticle(g, &articlesservice.CreateArticleRequest{Article: article})
+
+			response := c.ArticlesService.GetArticle(g, &articlesservice.GetArticleRequest{ArticleId: article.Id})
+
+			articlesservicechecks.CheckArticle(g, response.Article, article)
+		}),
+	)
+}
+
 func TestCreateArticle(t *testing.T) {
 	allure.Test(t, reports.ArticlesServiceFeature, reports.ArticlesSuite,
 		allure.Severity(severity.Critical),
