@@ -19,15 +19,6 @@ func (ctxlog *CtxLogger) InfofJSON(logText string, a ...interface{}) {
 	reports.AddAllureAttachmentJSON(logText, a)
 }
 
-func (ctxlog *CtxLogger) InfofText(logText string, a ...interface{}) {
-	ctxlog.Zap.Info(fmt.Sprintf(logText+": %+v", a...))
-	reports.AddAllureAttachmentText(logText, a)
-}
-
-func (ctxlog *CtxLogger) Info(logText string) {
-	ctxlog.Zap.Info(logText)
-}
-
 func (ctxlog *CtxLogger) Errorf(format string, a ...interface{}) {
 	ctxlog.Zap.Error(fmt.Sprintf(format, a...))
 }
