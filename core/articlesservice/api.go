@@ -33,3 +33,17 @@ func (c *Client) createArticle(
 	c.logger.InfofJSON("GetOperationsResponse", res)
 	return res
 }
+
+func (c *Client) deleteArticle(
+	g gomega.Gomega,
+	ctx context.Context,
+	request *articlesservice.DeleteArticleRequest,
+) *articlesservice.DeleteArticleResponse {
+	c.logger.InfofJSON("DeleteArticleRequest", request)
+
+	res, err := c.ArticlesServiceClient.DeleteArticle(ctx, request)
+	g.Expect(err).ShouldNot(gomega.HaveOccurred(), "DeleteArticle error")
+
+	c.logger.InfofJSON("DeleteArticleResponse", res)
+	return res
+}

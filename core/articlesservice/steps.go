@@ -28,3 +28,14 @@ func (c *Client) CreateArticle(
 
 	return response
 }
+
+func (c *Client) DeleteArticle(
+	g gomega.Gomega,
+	request *articlesservice.DeleteArticleRequest,
+) (response *articlesservice.DeleteArticleResponse) {
+	allure.Step(allure.Description("Send ArticlesService.DeleteArticle request"), allure.Action(func() {
+		response = c.deleteArticle(g, context.Background(), request)
+	}))
+
+	return response
+}

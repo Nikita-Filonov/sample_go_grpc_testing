@@ -1,5 +1,5 @@
-github.com/Nikita-Filonov/sample_go_grpc_server v0.0.1 h1:2O4Be2PibI213vmyc6D1+kgzRs1pECYTlTtw04QBNpE=
-github.com/Nikita-Filonov/sample_go_grpc_server v0.0.1/go.mod h1:oAWZb3HJM5qn9Mzw5G9dx9SIaqFS5ydCGLjc/S9Bau8=
+github.com/Nikita-Filonov/sample_go_grpc_server v0.0.2 h1:k9ZvCjFbOjxWBrtWF/5r3McKN9GQ5CRDoshA/ZeXgnc=
+github.com/Nikita-Filonov/sample_go_grpc_server v0.0.2/go.mod h1:oAWZb3HJM5qn9Mzw5G9dx9SIaqFS5ydCGLjc/S9Bau8=
 github.com/benbjohnson/clock v1.1.0 h1:Q92kusRqC1XV2MjkWETPvjJVqKetz1OzxZB7mHJLju8=
 github.com/dailymotion/allure-go v0.7.0 h1:CGMWvP/JDB3gLJuDnQFVUAF+R+JNfGQ2O3YM3FZstEg=
 github.com/dailymotion/allure-go v0.7.0/go.mod h1:4pYoSvscIDokMkNWJHJ9cvBfLmeW/pFvp9Y+LHvnPco=

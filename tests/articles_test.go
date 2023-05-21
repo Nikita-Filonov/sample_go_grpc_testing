@@ -24,7 +24,7 @@ func TestGetArticle(t *testing.T) {
 
 			response := c.ArticlesService.GetArticle(g, &articlesservice.GetArticleRequest{ArticleId: article.Id})
 
-			articlesservicechecks.CheckArticle(g, response.Article, article)
+			articlesservicechecks.CheckArticle(g, response.GetArticle(), article)
 		}),
 	)
 }
@@ -40,7 +40,27 @@ func TestCreateArticle(t *testing.T) {
 			article := articlesservicecontrollers.GetRandomArticle()
 			response := c.ArticlesService.CreateArticle(g, &articlesservice.CreateArticleRequest{Article: article})
 
-			articlesservicechecks.CheckArticle(g, response.Article, article)
+			articlesservicechecks.CheckArticle(g, response.GetArticle(), article)
+		}),
+	)
+}
+
+func TestDeleteArticle(t *testing.T) {
+	allure.Test(t, reports.ArticlesServiceFeature, reports.ArticlesSuite,
+		allure.Severity(severity.Critical),
+		allure.Tags(reports.ArticlesTag),
+		allure.Name("Delete article"),
+		allure.Action(func() {
+			c, g := common.SetupTesting(t)
+
+			article := articlesservicecontrollers.GetRandomArticle()
+			c.ArticlesService.CreateArticle(g, &articlesservice.CreateArticleRequest{Article: article})
+
+			c.ArticlesService.DeleteArticle(g, &articlesservice.DeleteArticleRequest{ArticleId: article.Id})
+
+			response := c.ArticlesService.GetArticle(g, &articlesservice.GetArticleRequest{ArticleId: article.Id})
+
+			articlesservicechecks.CheckArticleNotFoundError(g, response.GetError(), article.Id)
 		}),
 	)
 }
