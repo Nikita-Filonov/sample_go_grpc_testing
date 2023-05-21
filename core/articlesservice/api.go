@@ -30,7 +30,21 @@ func (c *Client) createArticle(
 	res, err := c.ArticlesServiceClient.CreateArticle(ctx, request)
 	g.Expect(err).ShouldNot(gomega.HaveOccurred(), "CreateArticle error")
 
-	c.logger.InfofJSON("GetOperationsResponse", res)
+	c.logger.InfofJSON("CreateArticleResponse", res)
+	return res
+}
+
+func (c *Client) updateArticle(
+	g gomega.Gomega,
+	ctx context.Context,
+	request *articlesservice.UpdateArticleRequest,
+) *articlesservice.UpdateArticleResponse {
+	c.logger.InfofJSON("UpdateArticleRequest", request)
+
+	res, err := c.ArticlesServiceClient.UpdateArticle(ctx, request)
+	g.Expect(err).ShouldNot(gomega.HaveOccurred(), "UpdateArticle error")
+
+	c.logger.InfofJSON("UpdateArticleResponse", res)
 	return res
 }
 

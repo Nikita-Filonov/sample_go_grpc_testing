@@ -12,6 +12,8 @@ import (
 )
 
 func TestGetArticle(t *testing.T) {
+	t.Parallel()
+
 	allure.Test(t, reports.ArticlesServiceFeature, reports.ArticlesSuite,
 		allure.Severity(severity.Critical),
 		allure.Tags(reports.ArticlesTag),
@@ -30,6 +32,8 @@ func TestGetArticle(t *testing.T) {
 }
 
 func TestCreateArticle(t *testing.T) {
+	t.Parallel()
+
 	allure.Test(t, reports.ArticlesServiceFeature, reports.ArticlesSuite,
 		allure.Severity(severity.Critical),
 		allure.Tags(reports.ArticlesTag),
@@ -45,7 +49,29 @@ func TestCreateArticle(t *testing.T) {
 	)
 }
 
+func TestUpdateArticle(t *testing.T) {
+	t.Parallel()
+
+	allure.Test(t, reports.ArticlesServiceFeature, reports.ArticlesSuite,
+		allure.Severity(severity.Critical),
+		allure.Tags(reports.ArticlesTag),
+		allure.Name("Update article"),
+		allure.Action(func() {
+			c, g := common.SetupTesting(t)
+
+			article := articlesservicecontrollers.GetRandomArticle()
+			c.ArticlesService.CreateArticle(g, &articlesservice.CreateArticleRequest{Article: article})
+
+			response := c.ArticlesService.UpdateArticle(g, &articlesservice.UpdateArticleRequest{Article: article})
+
+			articlesservicechecks.CheckArticle(g, response.GetArticle(), article)
+		}),
+	)
+}
+
 func TestDeleteArticle(t *testing.T) {
+	t.Parallel()
+
 	allure.Test(t, reports.ArticlesServiceFeature, reports.ArticlesSuite,
 		allure.Severity(severity.Critical),
 		allure.Tags(reports.ArticlesTag),
