@@ -1,0 +1,14 @@
+[
+	[
+		{
+			"Result": {
+				"Article": {
+					"id": "6df37252-4257-460d-894b-6c66881d89c8",
+					"title": "5Z3nY8BHtPHxJZmNUlIm3CiL3Gdl6R",
+					"author": "e5tuKV0xzNLqseSzT5x8",
+					"description": "h8UIsATsY3yfPxmusgRCcWVH3dOtGuIrFGnvZa6hTeomPTl9snlWMk852N7Dlr0gYdZjSBgXcXDFhhdwJ4yIb0i1Ztqok0GtYeI5"
+				}
+			}
+		}
+	]
+]
