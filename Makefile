@@ -24,6 +24,6 @@ success:
 test:
 	$(MAKE) testing
 	@printf "$(DIM)"
-	@GOBIN=$(GOBIN) ALLURE_RESULTS_PATH=. go test ./tests -v -timeout 2m
+	@GOBIN=$(GOBIN) ALLURE_RESULTS_PATH=. ENV=local go test ./tests -v -timeout 2m
 	@printf "$(NC)"
 	$(MAKE) success
