@@ -4,9 +4,20 @@ import (
 	"fmt"
 	"gopkg.in/yaml.v3"
 	"io/ioutil"
+	"os"
 )
 
-func ReadConfig(configPath string, config interface{}) error {
+func getEnv() (Env, error) {
+	env := os.Getenv("ENV")
+
+	if len(env) == 0 {
+		return "", fmt.Errorf("cannot parse env variable")
+	}
+
+	return Env(env), nil
+}
+
+func readConfig(configPath string, config interface{}) error {
 	if configPath == `` {
 		return fmt.Errorf(`no config path`)
 	}
@@ -24,14 +35,20 @@ func ReadConfig(configPath string, config interface{}) error {
 	return nil
 }
 
-func NewConfig() Config {
+func NewConfig() (Config, error) {
 	var config Config
 
-	err := ReadConfig("../infrastructure/config.yml", &config)
+	env, err := getEnv()
 
 	if err != nil {
-		panic(err)
+		return Config{}, err
 	}
 
-	return config
+	err = readConfig(fmt.Sprintf("../infrastructure/config-%s.yml", env), &config)
+
+	if err != nil {
+		return Config{}, err
+	}
+
+	return config, nil
 }

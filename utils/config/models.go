@@ -1,5 +1,13 @@
 package config
 
+type Env string
+
+const (
+	DevEnv    Env = "dev"
+	LocalEnv  Env = "local"
+	StableEnv Env = "stable"
+)
+
 type Logger struct {
 	Level     string `yaml:"level"`
 	IsDevMode bool   `yaml:"isDevMode"`
