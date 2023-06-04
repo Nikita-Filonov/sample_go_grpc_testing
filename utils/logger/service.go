@@ -8,6 +8,13 @@ import (
 	"go.uber.org/zap/zapcore"
 )
 
+var MapConfLevelZapLevel = map[config.LogLevel]zapcore.Level{
+	config.DebugLogLevel:   zap.DebugLevel,
+	config.InfoLogLevel:    zap.InfoLevel,
+	config.WarningLogLevel: zap.WarnLevel,
+	config.ErrorLogLevel:   zap.ErrorLevel,
+}
+
 type Service interface {
 	NewPrefix(prefix string) *CtxLogger
 }
@@ -28,11 +35,7 @@ func NewLoggerService(conf config.Config) (Service, error) {
 		return nil, err
 	}
 
-	return NewLoggerServiceWithZap(zapLogger), err
-}
-
-func NewLoggerServiceWithZap(zl *zap.Logger) Service {
-	return &loggerService{zl}
+	return &loggerService{zapLogger}, err
 }
 
 func utcTimeEncoder(t time.Time, enc zapcore.PrimitiveArrayEncoder) {
@@ -57,7 +60,7 @@ func newEncoderConfig() zapcore.EncoderConfig {
 
 func newConfig(conf config.Logger) zap.Config {
 	cfg := zap.Config{
-		Level:             zap.NewAtomicLevelAt(zap.InfoLevel),
+		Level:             zap.NewAtomicLevelAt(MapConfLevelZapLevel[conf.Level]),
 		Development:       false,
 		DisableCaller:     false,
 		DisableStacktrace: false,
@@ -74,17 +77,6 @@ func newConfig(conf config.Logger) zap.Config {
 	if conf.IsDevMode {
 		cfg.Development = true
 		cfg.Encoding = "console"
-	}
-
-	switch conf.Level {
-	case "debug":
-		cfg.Level = zap.NewAtomicLevelAt(zap.DebugLevel)
-	case "warning":
-		cfg.Level = zap.NewAtomicLevelAt(zap.WarnLevel)
-	case "error":
-		cfg.Level = zap.NewAtomicLevelAt(zap.ErrorLevel)
-	case "info":
-		cfg.Level = zap.NewAtomicLevelAt(zap.InfoLevel)
 	}
 
 	return cfg

@@ -1,16 +1,18 @@
 package config
 
 type Env string
+type LogLevel string
 
 const (
-	DevEnv    Env = "dev"
-	LocalEnv  Env = "local"
-	StableEnv Env = "stable"
+	DebugLogLevel   LogLevel = "debug"
+	InfoLogLevel    LogLevel = "info"
+	WarningLogLevel LogLevel = "warning"
+	ErrorLogLevel   LogLevel = "error"
 )
 
 type Logger struct {
-	Level     string `yaml:"level"`
-	IsDevMode bool   `yaml:"isDevMode"`
+	Level     LogLevel `yaml:"level"`
+	IsDevMode bool     `yaml:"isDevMode"`
 }
 
 type GrpcService struct {
