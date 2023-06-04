@@ -1,0 +1,12 @@
+[
+	[
+		{
+			"article": {
+				"id": "4c5502e8-5330-4553-a4bb-f43987a58bf5",
+				"title": "BPLMyNnmoO8nWGQkJTvo5dy9FfjU4i",
+				"author": "rqMeyJR7XJBFqrsEl696",
+				"description": "AsmnwAZ2YfpQTaB1LLjoZiDeUmsayu3QHlLSJJyEJCkBFcNLI8mlmsfaq9rmfUl0wJb15Kd9aoqMogtG22jIFUGuzMvq4P3SkIkP"
+			}
+		}
+	]
+]

@@ -1,0 +1,11 @@
+[
+	[
+		{
+			"Result": {
+				"Error": {
+					"message": "Article with Id bf18d925-ebaa-47bf-8ae3-e0b9d4354835 not found"
+				}
+			}
+		}
+	]
+]
