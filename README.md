@@ -22,6 +22,15 @@ go mod download
 make test
 ```
 
+If you want to run tests without make file, then make sure env variable are set
+
+```shell
+export ENV=local
+export ALLURE_RESULTS_PATH=.
+
+go test ./tests -v -timeout 2m
+```
+
 Generate allure report
 
 ```shell
